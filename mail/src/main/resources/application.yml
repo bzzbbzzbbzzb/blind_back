@@ -1,0 +1,30 @@
+server:
+  port: 2000
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 2398541732@qq.com
+    password: mgbqrujnnxsqdhgh
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+    default-encoding: utf-8
+  application:
+    name: mail-service
+eureka:
+  client: #将客户端注册到 eureka 服务列表内
+    service-url:
+      defaultZone: http://150.158.173.73:3000/eureka  #这个地址是 3000注册中心在 application.yml 中暴露出来额注册地址 （单机版）
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true  #显示访问路径的 ip 地址
+    ip-address: 124.222.28.103
+# Spring Boot 对 actuator 监控屏蔽了大多数的节点，只暴露了 heath 节点，本段配置（*）就是为了开启所有的节点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # * 在yaml 文件属于关键字，所以需要加引号
+

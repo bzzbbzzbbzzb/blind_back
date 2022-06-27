@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: book-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/blind
+    username: root
+    password: "0523"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+server:
+  port: 2004
+eureka:
+  client:
+    service-url:
+      defaultZone: http://150.158.173.73:3000/eureka
+  instance:
+    instance-id: book-service #自定义服务名称信息
+    preferIpAddress: true
+    ip-address: 150.158.173.73

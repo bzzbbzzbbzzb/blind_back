@@ -1,0 +1,45 @@
+server:
+  port: 2001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://150.158.173.73:3000/eureka
+  instance:
+    instance-id: user-service #自定义服务名称信息
+    preferIpAddress: true
+    ip-address: 150.158.173.73
+spring:
+  application:
+   name: user-service
+  redis:
+    database: 5
+    # 配置redis的主机地址，需要修改成自己的
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    jedis:
+      pool:
+      # 连接池中的最大空闲连接，默认值也是8。
+       max-idle: 500
+      # 连接池中的最小空闲连接，默认值也是0。
+       min-idle: 50
+      # 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)
+       max-active: 1000
+      # 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出JedisConnectionException
+       max-wait: 2000
+  datasource:
+    username: root
+    password: "0523"
+    url: jdbc:mysql://localhost:3306/blind?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+jwt:
+  data:
+    #    jwt加密密钥
+    SECRET: jwt-token-secret
+    #    jwt储存的请求头Authorization固定写法
+    tokenHeader: Authorization
+    #      jwt的过期时间(60s*60min*24h*7day)
+    expiration: 604800
+    #    jwt负载中拿到的头信息
+    tokenHead: Bearer

@@ -1,0 +1,40 @@
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+eureka:
+  client: #将客户端注册到 eureka 服务列表内
+    service-url:
+      defaultZone: http://150.158.173.73:3000/eureka  #这个地址是 3000注册中心在 application.yml 中暴露出来额注册地址 （单机版）
+    register-with-eureka: true
+  instance:
+    instance-id: gateway-service #自定义服务名称信息
+    prefer-ip-address: true  #显示访问路径的 ip 地址
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+        # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
+        # 忽略大小写匹配，默认为 false。
+        # 当 eureka 自动大写 serviceId 时很有用。 所以 MYSERIVCE，会匹配 /myservice/**
+      routes:
+        - id: userService
+          uri: lb://user-service
+          predicates:
+           - Path=/user/**
+        - id: bookService
+          uri: lb://book-service
+          predicates:
+            - Path=/book/**,/bind
+        - id: bookService-ws
+          uri: lb:ws://book-service
+          predicates:
+            - Path=/websocket
+  application:
+    name: gateway-service
+server:
+  port: 4000
