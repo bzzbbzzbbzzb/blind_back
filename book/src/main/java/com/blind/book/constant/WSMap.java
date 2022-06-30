@@ -9,4 +9,5 @@ public class WSMap{
     public static HashMap<String, WebSocket> wsMap = new HashMap<>();
     public static HashMap<Integer,String> bindMap =new HashMap<>();
     public static HashMap<String,WebSocket> notBindSet =new HashMap<>();
+    public static boolean isGet = false;
 }

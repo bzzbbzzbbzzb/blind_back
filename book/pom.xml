@@ -21,6 +21,20 @@
             <version>2.7.0</version>
         </dependency>
         <dependency>
+            <groupId>com.blind</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/okhttp-3.13.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.blind</groupId>
+            <artifactId>okio</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/okio-1.15.0-20180330.135339-9.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.7.0</version>
@@ -96,8 +110,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.0</version>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>BOOT-INF/lib</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 </project>

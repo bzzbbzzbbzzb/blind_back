@@ -11,6 +11,11 @@
         <result column="content" property="text"/>
         <result column="pinyin" property="Braille"/>
     </resultMap>
+    <resultMap id="StudyBase" type="com.blind.book.VO.StudyVo">
+        <result column="id" property="id"/>
+        <result column="words" property="word"/>
+        <result column="pinyin" property="Braille"/>
+    </resultMap>
     <select id="getBookList" resultMap="Base" parameterType="java.lang.Integer">
         select records.book_offset as book_off,records.s_offset as s_off,books.book_name
         as book_name,books.id as book_id from records left join books on records.bookId = books.id where
@@ -18,5 +23,14 @@
     </select>
     <select id="getBook" resultMap="BookBase">
         select content,pinyin from books where id =#{bookId}
+    </select>
+    <update id="updateOff">
+        update records set book_offset =#{bookOffset} where (userId =#{userId} and bookId= #{bookId})
+    </update>
+    <update id="updateSOff">
+        update records set s_offset = #{sOff} where userId =#{userId}
+    </update>
+    <select id="getStudy" resultMap="StudyBase">
+        select id,words,pinyin from study
     </select>
 </mapper>

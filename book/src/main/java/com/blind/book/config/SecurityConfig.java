@@ -41,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //对于登录接口允许匿名访问
                 .antMatchers("/websocket").anonymous()
+                .antMatchers("/book/upload").anonymous()
+                .antMatchers("/updateBook/**").anonymous()
+                .antMatchers("/speechRec/**").anonymous()
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         //允许跨域

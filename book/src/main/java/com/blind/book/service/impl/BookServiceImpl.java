@@ -4,6 +4,7 @@ import com.blind.book.Dto.PythonRequestDto;
 import com.blind.book.Utils.SendPictureUtil;
 import com.blind.book.VO.BookListVo;
 import com.blind.book.VO.BookVo;
+import com.blind.book.VO.StudyVo;
 import com.blind.book.repository.BookMapper;
 import com.blind.book.service.BookService;
 import com.blind.book.service.RPCService;
@@ -43,6 +44,23 @@ public class BookServiceImpl implements BookService {
     public BookVo getBook(Integer bookId) {
        return bookMapper.getBook(bookId);
     }
+
+    @Override
+    public void updateOff(Integer userId, Integer bookId, Integer bookOffset) {
+        bookMapper.updateOff(userId, bookId, bookOffset);
+    }
+
+    @Override
+    public void updateSOff(Integer userId, Integer sOff) {
+        bookMapper.updateSOff(userId, sOff);
+    }
+
+    @Override
+    public List<StudyVo> getStudy() {
+        return bookMapper.getStudy();
+    }
+
+
 }
 class JsonParse{
     Header header;

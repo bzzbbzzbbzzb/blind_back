@@ -29,7 +29,7 @@ spring:
         - id: bookService
           uri: lb://book-service
           predicates:
-            - Path=/book/**,/bind
+            - Path=/book/**,/bind,/speechRec/**
         - id: bookService-ws
           uri: lb:ws://book-service
           predicates:

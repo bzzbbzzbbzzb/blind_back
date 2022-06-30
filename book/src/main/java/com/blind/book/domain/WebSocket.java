@@ -63,11 +63,13 @@ public class WebSocket {
          Integer userId1 = deviceMapper.getBind(message);
         deviceId = message;
        if(!Objects.isNull(userId1)) {
-           bindMap.put(userId,message);
+           bindMap.put(userId1,message);
            wsMap.put(message,this);
            userId = userId1;
+           this.sendMessage("{\"type\":\"bind\",\"info\":\"绑定成功\"}");
        }else{
            notBindSet.put(message,this);
+           this.sendMessage("{\"type\":\"bind\",\"info\":\"暂无账号绑定，等待绑定中\"}");
        }
     }
 
